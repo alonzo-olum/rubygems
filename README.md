@@ -9,7 +9,7 @@ Algorithms covered:
 - linter
 - reverse polish notation
 
-###Installation
+### Installation
 
 Just ensure you have ruby in your environment.
 If you use Mac/Linux environment;
@@ -17,5 +17,5 @@ If you use Mac/Linux environment;
 	`apt-get install ruby`
 	- you can build from source i.e. extract tarball -> run `./configure` and
 		make. (You can find good instructions at: http://www.ruby-lang.org.
-###Running
+### Running
 		It is as simple as: `ruby script.rb`
