@@ -57,30 +57,35 @@ class SortedArray
     # Recursively call the quicksort on whatever is right of pivot
     quicksort!(pivot_position+1, right_index)
   end
+
+  def quickselect!(kth_lowest_val, left_idx, right_idx)
+    # on the base case; subarray = 1
+    # we have the val
+    if right_idx - left_idx <= 0
+      return @array[left_idx]
+    end
+    # Partition the array and grab the pivot
+    pivot_position = partition!(left_idx, right_idx)
+    if kth_lowest_val < pivot_position
+      quickselect!(kth_lowest_val, left_idx, pivot_position-1)
+    elsif kth_lowest_val > pivot_position
+      quickselect!(kth_lowest_val, pivot_position+1, right_idx)
+    else
+      #kth_lowest_val == pivot_position
+      #if after partition the pivot_position is in the same spot
+      #as the kth_lowest_val, we've found the value
+      return @array[pivot_position]
+    end
+  end
 end
 
-def quickselect!(kth_lowest_val, left_idx, right_idx)
-  # on the base case; subarray = 1
-  # we have the val
-  if right_idx - left_idx <= 0
-    return @array[left_idx]
-  end
-  # Partition the array and grab the pivot
-  pivot_position = partition!(left_idx, right_idx)
-  if kth_lowest_val < pivot_position
-    quickselect!(kth_lowest_val, left_idx, pivot_position-1)
-  elsif kth_lowest_val > pivot_position
-    quickselect!(kth_lowest_val, pivot_position+1, right_idx)
-  else
-    #kth_lowest_val == pivot_position
-    #if after partition the pivot_position is in the same spot
-    #as the kth_lowest_val, we've found the value
-    return @array[pivot_position]
-  end
-end
 
 # Main Sorting Entry Block
 arr = [9, 5, 2, 6, 8, 1, 3, 4, 0]
+kth_lowest = 2
+
 sorted_arr = SortedArray.new(arr)
 sorted_arr.quicksort!(0, arr.length-1)
-p sorted_arr.array
+pivot = sorted_arr.quickselect!(kth_lowest-1, 0, arr.length-2)  # indexing begins at 0
+
+printf("quicksort: %s, kth_lowest: %d", sorted_arr.array, pivot)
