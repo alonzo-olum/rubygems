@@ -86,6 +86,6 @@ kth_lowest = 2
 
 sorted_arr = SortedArray.new(arr)
 sorted_arr.quicksort!(0, arr.length-1)
-pivot = sorted_arr.quickselect!(kth_lowest-1, 0, arr.length-2)  # indexing begins at 0
+pivot = sorted_arr.quickselect!(kth_lowest-1, 0, arr.length-1)  # indexing begins at 0
 
 printf("quicksort: %s, kth_lowest: %d", sorted_arr.array, pivot)
