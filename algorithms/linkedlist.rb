@@ -92,16 +92,21 @@ end
 
 node_1 = Node.new("one")
 node_2 = Node.new("eight")
+
 node_1.next_node = node_2
 
 node_3 = Node.new("seven")
+
 node_2.next_node = node_3
 
 node_4 = Node.new("six")
 
 list = LinkedList.new(node_1)
+
 p list.read(1)
 p list.index_of("eight")
+
 list.insert_at_index(2, node_4)
 list.delete_at_index(2)
+
 p list.read(2)
