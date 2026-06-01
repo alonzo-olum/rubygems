@@ -12,20 +12,30 @@ class Person
   end
 
   def network
+    # track visited nodes, to reset attr
+    to_reset = [self]
+    # queue init w/ root
     queue = [self]
     self.visited = true
 
     while queue.any?
+      # remove curr vertex from queue
       curr = queue.shift
       puts curr.name
 
+      # add all friends to queue
       curr.friends.each do |friend|
         if !friend.visited
+          to_reset << friend
           queue << friend
           friend.visited = true
         end
       end
     end
+    # algo is complete, reset each node's visited
+    # attr to false
+    to_reset.each do |node|
+      node.visited = false
   end
 end
 
